@@ -1,0 +1,31 @@
+#l:hover {
+  cursor: w-resize;
+}
+
+#r:hover {
+  cursor: e-resize;
+}
+
+#u:hover {
+  cursor: n-resize;
+}
+
+#d:hover {
+  cursor: s-resize;
+}
+
+#lu:hover {
+  cursor: nw-resize;
+}
+
+#ru:hover {
+  cursor: ne-resize;
+}
+
+#ld:hover {
+  cursor: sw-resize;
+}
+
+#rd:hover {
+  cursor: se-resize;
+}
