@@ -12,7 +12,7 @@
 ## 使用
 
 ```javascript
-import Drag from '../src/index'
+import Drag from 'simple-rc-drag'
 
 function App() {
 
