@@ -4,6 +4,9 @@
   "type": "module",
   "main": "./lib/simple-rc-drag.umd.js",
   "module": "./lib/simple-rc-drag.js",
+  "repository": {
+    "url": "https://github.com/chenyunjie/simple-rc-drag"
+  },
   "files": [
     "lib"
   ],
