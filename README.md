@@ -2,7 +2,7 @@
 ----
 
 ## 效果
-![效果](http://static.runoob.com/images/runoob-logo.png)
+![效果](https://raw.githubusercontent.com/chenyunjie/simple-rc-drag/main/examples/example.gif)
 
 
 ## 安装
