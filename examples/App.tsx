@@ -14,6 +14,16 @@ function App() {
           height={100}
           x={30}
           y={30} />
+        
+        <Drag
+          onChange={(v) => {
+            console.log('位置变更了:', v)
+          }}
+          container="box"
+          width={100}
+          height={100}
+          x={200}
+          y={30} />
       </div>
     </div>
   )
