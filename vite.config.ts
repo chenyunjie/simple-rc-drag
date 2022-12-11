@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path';
 import typescript from '@rollup/plugin-typescript';
+import libCss from 'vite-plugin-libcss';
 
 function resolve(str: string) {
   return path.resolve(__dirname, str);
@@ -26,6 +27,7 @@ export default defineConfig({
         },
       },
     },
+    cssCodeSplit: false
   },
 
   plugins: [
@@ -38,5 +40,6 @@ export default defineConfig({
       exclude: resolve('node_modules/**'),
       allowSyntheticDefaultImports: true,
     }),
+    libCss()
   ]
 })
