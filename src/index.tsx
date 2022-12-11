@@ -295,6 +295,11 @@ export default class Drag extends React.Component<DragProps, any> {
             }
           }
         }>
+          <div style={{ width: '100%', height: '100%', position: 'absolute' }}>
+            <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+              {this.props.children}
+            </div>
+          </div>
           { /* 上部分 */ }
           <div data-key="lu" style={{ border, position: 'absolute', backgroundColor: anchorColor, width: anchorSize, height: anchorSize, left: -anchorSize/2 - anchorBorderWidth, top: -anchorSize/2 - anchorBorderWidth }}></div>
           <div data-key="u" style={{ border, position: 'absolute',  backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(50% - ${anchorSize/2}px)`, top: -anchorSize/2 - anchorBorderWidth }}></div>

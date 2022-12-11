@@ -13,8 +13,12 @@ function App() {
           width={100}
           height={100}
           x={30}
-          y={30} />
-        
+          y={30}>
+          
+          <div>文本</div>
+          <button>按钮</button>
+        </Drag>
+          
         <Drag
           onChange={(v) => {
             console.log('位置变更了:', v)
