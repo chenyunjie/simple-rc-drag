@@ -1,31 +1,41 @@
-#l:hover {
-  cursor: w-resize;
+.l:hover {
+  cursor: ew-resize;
 }
 
-#r:hover {
-  cursor: e-resize;
+.r:hover {
+  cursor: ew-resize;
 }
 
-#u:hover {
-  cursor: n-resize;
+.u:hover {
+  cursor: ns-resize;
 }
 
-#d:hover {
-  cursor: s-resize;
+.d:hover {
+  cursor: ns-resize;
 }
 
-#lu:hover {
-  cursor: nw-resize;
+.lu:hover {
+  cursor: nwse-resize;
 }
 
-#ru:hover {
-  cursor: ne-resize;
+.ru:hover {
+  cursor: nesw-resize;
 }
 
-#ld:hover {
-  cursor: sw-resize;
+.ld:hover {
+  cursor: nesw-resize;
 }
 
-#rd:hover {
-  cursor: se-resize;
+.rd:hover {
+  cursor: nwse-resize;
+}
+
+.simple-rc-drag-container {
+    position: 'relative'; 
+    width: '100%';
+    height: '100%';
+}
+
+.simple-rc-drag-container:hover {
+  cursor: move;
 }

@@ -295,7 +295,7 @@ export default class Drag extends React.Component<DragProps, any> {
 
     return (
       <div style={mergeStyle}>
-        <div style={{ position: 'relative', width: '100%', height: '100%' }} ref={
+        <div className="simple-rc-drag-container" ref={
           (r) => {
             this.element = r;
             if (this.element) {
@@ -312,19 +312,19 @@ export default class Drag extends React.Component<DragProps, any> {
             </div>
           </div>
           { /* 上部分 */ }
-          <div data-key="lu" style={{ border, position: 'absolute', backgroundColor: anchorColor, width: anchorSize, height: anchorSize, left: -anchorSize/2 - anchorBorderWidth, top: -anchorSize/2 - anchorBorderWidth }}></div>
-          <div data-key="u" style={{ border, position: 'absolute',  backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(50% - ${anchorSize/2}px)`, top: -anchorSize/2 - anchorBorderWidth }}></div>
-          <div data-key="ru" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: -anchorSize / 2 - anchorBorderWidth }}></div>
+          <div data-key="lu" className="lu" style={{ border, position: 'absolute', backgroundColor: anchorColor, width: anchorSize, height: anchorSize, left: -anchorSize/2 - anchorBorderWidth, top: -anchorSize/2 - anchorBorderWidth }}></div>
+          <div data-key="u" className="u" style={{ border, position: 'absolute',  backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(50% - ${anchorSize/2}px)`, top: -anchorSize/2 - anchorBorderWidth }}></div>
+          <div data-key="ru"  className="ru" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: -anchorSize / 2 - anchorBorderWidth }}></div>
           
 
           {/* 下部分 */}
-          <div data-key="ld" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: -anchorSize/2 - anchorBorderWidth, top: `calc(100% - ${anchorSize/2}px)`}}></div>
-          <div data-key="d" style={{ border, position: 'absolute',  backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(50% - ${anchorSize/2}px)`, top: `calc(100% - ${anchorSize/2}px)` }}></div>
-          <div data-key="rd" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: `calc(100% - ${anchorSize / 2}px)` }}></div>
+          <div data-key="ld" className="ld" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: -anchorSize/2 - anchorBorderWidth, top: `calc(100% - ${anchorSize/2}px)`}}></div>
+          <div data-key="d" className="d" style={{ border, position: 'absolute',  backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(50% - ${anchorSize/2}px)`, top: `calc(100% - ${anchorSize/2}px)` }}></div>
+          <div data-key="rd" className="rd" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: `calc(100% - ${anchorSize / 2}px)` }}></div>
           
           { /* 中间部分 */ }
-          <div data-key="l" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: -anchorSize / 2 - anchorBorderWidth, top: `calc(50% - ${anchorSize / 2}px)` }}></div>
-          <div data-key="r" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: `calc(50% - ${anchorSize / 2}px)` }}></div>
+          <div data-key="l"  className="l" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: -anchorSize / 2 - anchorBorderWidth, top: `calc(50% - ${anchorSize / 2}px)` }}></div>
+          <div data-key="r"  className="r" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: `calc(50% - ${anchorSize / 2}px)` }}></div>
         </div>
         
       </div>
