@@ -49,88 +49,96 @@ export default class Drag extends React.Component<DragProps, any> {
 
   componentDidMount(): void {
 
-    window.addEventListener('mousedown', (e: any) => {
-      this.startX = e.clientX;
-      this.startY = e.clientY;
-      
-      if (e.target == this.element) {
-        this.isMouseDown = true;
+    window.addEventListener('mousedown', this.mouseDownHandler);
 
+    window.addEventListener('mousemove', this.mouseMoveHandler);
+
+    window.addEventListener('mouseup', this.mouseUpHandler);
+  }
+
+  // 鼠标按下
+  mouseDownHandler = (e: any) => {
+    this.startX = e.clientX;
+    this.startY = e.clientY;
+
+    const { key } = e.target.dataset;
+
+    if (key && anchors.includes(key)) {
+      if (this.isMouseDownOnDrag(e.target)) {
+        this.isMouseDown = true;
+        this.dragDirection = key;
+      }
+    } else {
+      if (this.isMouseDownOnDrag(e.target)) {
+        this.isMouseDown = true;
+  
         if (this.element) {
           this.currentX = this.element.parentElement.offsetLeft;
           this.currentY = this.element.parentElement.offsetTop;
         }
-      } else {
+      }
+    }
+  };
 
-        if (e.target && e.target.parentElement === this.element) {
-          const { key } = e.target.dataset;
-          if (anchors.includes(key)) {
-            this.isMouseDown = true;
-            this.dragDirection = key;
+  // 移动
+  mouseMoveHandler = (e: any) => {
+    const translateX = e.clientX - this.startX;
+    const translateY = e.clientY - this.startY;
+
+    if (this.isMouseDown) {
+
+      if (!this.dragDirection) {
+        if (this.element) {
+          let left = this.currentX + translateX;
+          let top = this.currentY + translateY;
+
+          const container = document.getElementById(this.props.container);
+          if (left < 0) {
+            left = 0;
           }
-        }
-      }
-    });
 
-    window.addEventListener('mousemove', (e) => {
-      const translateX = e.clientX - this.startX;
-      const translateY = e.clientY - this.startY;
-  
-      if (this.isMouseDown) {
+          if (top < 0) {
+            top = 0;
+          }
 
-        if (!this.dragDirection) {
-          if (this.element) {
-            let left = this.currentX + translateX;
-            let top = this.currentY + translateY;
-
-            const container = document.getElementById(this.props.container);
-            if (left < 0) {
-              left = 0;
+          if (container) {
+            if (left > container.clientWidth - this.width) {
+              left = container.clientWidth - this.width;
             }
 
-            if (top < 0) {
-              top = 0;
+            if (top > container.clientHeight - this.height) {
+              top = container.clientHeight - this.height;
             }
-
-            if (container) {
-              if (left > container.clientWidth - this.width) {
-                left = container.clientWidth - this.width;
-              }
-
-              if (top > container.clientHeight - this.height) {
-                top = container.clientHeight - this.height;
-              }
-            }
-            
-            this.element.parentElement.style.left = `${left}px`;
-            this.element.parentElement.style.top = `${top}px`;
-          } 
-        } else {
-          this.transform(translateX, translateY);
+          }
+          
+          this.element.parentElement.style.left = `${left}px`;
+          this.element.parentElement.style.top = `${top}px`;
         }
-
-        if (this.props.onChange) {
-          this.props.onChange({
-            x: this.element.parentElement.offsetLeft,
-            y: this.element.parentElement.offsetTop,
-            width: this.width,
-            height: this.height
-          })
-        }
+      } else {
+        this.transform(translateX, translateY);
       }
-    });
 
-    window.addEventListener('mouseup', (e) => { 
-      this.isMouseDown = false;
-      if (this.element) {
-        this.currentX = this.element.parentElement.offsetLeft;
-        this.currentY = this.element.parentElement.offsetTop;
-        this.width = this.element.parentElement.clientWidth;
-        this.height = this.element.parentElement.clientHeight;
+      if (this.props.onChange) {
+        this.props.onChange({
+          x: this.element.parentElement.offsetLeft,
+          y: this.element.parentElement.offsetTop,
+          width: this.width,
+          height: this.height
+        })
       }
-      
-      this.dragDirection = '';
-    });
+    }
+  };
+
+  mouseUpHandler = (e: any) => { 
+    this.isMouseDown = false;
+    if (this.element) {
+      this.currentX = this.element.parentElement.offsetLeft;
+      this.currentY = this.element.parentElement.offsetTop;
+      this.width = this.element.parentElement.clientWidth;
+      this.height = this.element.parentElement.clientHeight;
+    }
+    
+    this.dragDirection = '';
   }
 
   // 变更大小及位置
@@ -318,5 +326,21 @@ export default class Drag extends React.Component<DragProps, any> {
         
       </div>
     );
+  }
+
+  isMouseDownOnDrag = (element: any): boolean => {
+
+    if (!element) {
+      return false;
+    }
+
+    if (!element.parentElement) {
+      return false;
+    }
+    if (element.parentElement == this.element) {
+      return true;
+    } else {
+      return this.isMouseDownOnDrag(element.parentElement);
+    }
   }
 }
