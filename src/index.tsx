@@ -58,6 +58,7 @@ export default class Drag extends React.Component<DragProps, any> {
 
   // 鼠标按下
   mouseDownHandler = (e: any) => {
+    e.preventDefault();
     this.startX = e.clientX;
     this.startY = e.clientY;
 
@@ -82,6 +83,7 @@ export default class Drag extends React.Component<DragProps, any> {
 
   // 移动
   mouseMoveHandler = (e: any) => {
+    e.preventDefault();
     const translateX = e.clientX - this.startX;
     const translateY = e.clientY - this.startY;
 
@@ -130,6 +132,7 @@ export default class Drag extends React.Component<DragProps, any> {
   };
 
   mouseUpHandler = (e: any) => { 
+    e.preventDefault();
     this.isMouseDown = false;
     if (this.element) {
       this.currentX = this.element.parentElement.offsetLeft;
