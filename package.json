@@ -1,6 +1,6 @@
 {
   "name": "simple-rc-drag",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "type": "module",
   "main": "./lib/simple-rc-drag.umd.js",
   "module": "./lib/simple-rc-drag.js",

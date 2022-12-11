@@ -57,7 +57,7 @@ export default class Drag extends React.Component<DragProps, any> {
 
   // 鼠标按下
   mouseDownHandler = (e: any) => {
-    e.preventDefault();
+    
     this.startX = e.clientX;
     this.startY = e.clientY;
 
@@ -65,11 +65,13 @@ export default class Drag extends React.Component<DragProps, any> {
 
     if (key && anchors.includes(key)) {
       if (this.isMouseDownOnDrag(e.target)) {
+        e.preventDefault();
         this.isMouseDown = true;
         this.dragDirection = key;
       }
     } else {
       if (this.isMouseDownOnDrag(e.target)) {
+        e.preventDefault();
         this.isMouseDown = true;
   
         if (this.element) {
@@ -82,12 +84,12 @@ export default class Drag extends React.Component<DragProps, any> {
 
   // 移动
   mouseMoveHandler = (e: any) => {
-    e.preventDefault();
+    
     const translateX = e.clientX - this.startX;
     const translateY = e.clientY - this.startY;
 
     if (this.isMouseDown) {
-
+      e.preventDefault();
       if (!this.dragDirection) {
         if (this.element) {
           let left = this.currentX + translateX;
@@ -131,7 +133,7 @@ export default class Drag extends React.Component<DragProps, any> {
   };
 
   mouseUpHandler = (e: any) => { 
-    e.preventDefault();
+    
     this.isMouseDown = false;
     if (this.element) {
       this.currentX = this.element.parentElement.offsetLeft;
