@@ -1,6 +1,5 @@
 import React from "react";
 import { DragProps } from "./types";
-import "./index.css";
 export default class Drag extends React.Component<DragProps, any> {
     isMouseDown: boolean;
     startX: number;
@@ -21,6 +20,7 @@ export default class Drag extends React.Component<DragProps, any> {
     extendToRight: (translateX: number) => void;
     extendToUp: (translateY: number) => void;
     extendToDown: (translateY: number) => void;
+    mouseOver: (e: any) => void;
     render(): React.ReactNode;
     isMouseDownOnDrag: (element: any) => boolean;
 }
