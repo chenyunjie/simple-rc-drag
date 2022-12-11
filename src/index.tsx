@@ -1,6 +1,5 @@
 import React from "react";
 import { DragProps, Rect } from "./types";
-import "./index.css";
 
 // 锚点集合
 const anchors = ['u', 'd', 'l', 'r', 'lu', 'ru', 'rd', 'ld'];
@@ -276,6 +275,46 @@ export default class Drag extends React.Component<DragProps, any> {
     }
   }
 
+  mouseOver = (e: any) => {
+
+    console.log('eeeeee', e);
+    const { key } = e.target.dataset;
+
+    const element = e.target;
+
+    switch (key) {
+      case "l":
+        element.style.cursor = 'ew-resize';
+        break;
+      case "r":
+        element.style.cursor = 'ew-resize';
+        break;
+      case "u":
+        element.style.cursor = 'ns-resize';
+        break;
+      case "d":
+        element.style.cursor = 'ns-resize';
+        break;
+      case "lu":
+        element.style.cursor = 'nwse-resize';
+        break;
+      case "ru":
+        element.style.cursor = 'nesw-resize';
+        break;
+      case "ld":
+        element.style.cursor = 'nesw-resize';
+        break;
+      case "rd":
+        element.style.cursor = 'nwse-resize';
+        break;
+    }
+  } 
+
+  mouseDragOver = (e: any) => {
+    const element = e.target;
+    element.style.cursor = 'move';
+  }
+
   render(): React.ReactNode {
 
     const { anchorBorderColor = '#666666', anchorBorderWidth = 1, anchorSize = 6, anchorColor="#ffffff" } = this.props;
@@ -294,7 +333,7 @@ export default class Drag extends React.Component<DragProps, any> {
     mergeStyle.position = 'absolute';
 
     return (
-      <div style={mergeStyle}>
+      <div style={mergeStyle} onMouseOver={this.mouseDragOver}>
         <div className="simple-rc-drag-container" ref={
           (r) => {
             this.element = r;
@@ -312,19 +351,19 @@ export default class Drag extends React.Component<DragProps, any> {
             </div>
           </div>
           { /* 上部分 */ }
-          <div data-key="lu" className="lu" style={{ border, position: 'absolute', backgroundColor: anchorColor, width: anchorSize, height: anchorSize, left: -anchorSize/2 - anchorBorderWidth, top: -anchorSize/2 - anchorBorderWidth }}></div>
-          <div data-key="u" className="u" style={{ border, position: 'absolute',  backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(50% - ${anchorSize/2}px)`, top: -anchorSize/2 - anchorBorderWidth }}></div>
-          <div data-key="ru"  className="ru" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: -anchorSize / 2 - anchorBorderWidth }}></div>
+          <div data-key="lu" onMouseOver={this.mouseOver} className="lu" style={{ border, position: 'absolute', backgroundColor: anchorColor, width: anchorSize, height: anchorSize, left: -anchorSize/2 - anchorBorderWidth, top: -anchorSize/2 - anchorBorderWidth }}></div>
+          <div data-key="u" onMouseOver={this.mouseOver} className="u" style={{ border, position: 'absolute',  backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(50% - ${anchorSize/2}px)`, top: -anchorSize/2 - anchorBorderWidth }}></div>
+          <div data-key="ru"  onMouseOver={this.mouseOver} className="ru" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: -anchorSize / 2 - anchorBorderWidth }}></div>
           
 
           {/* 下部分 */}
-          <div data-key="ld" className="ld" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: -anchorSize/2 - anchorBorderWidth, top: `calc(100% - ${anchorSize/2}px)`}}></div>
-          <div data-key="d" className="d" style={{ border, position: 'absolute',  backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(50% - ${anchorSize/2}px)`, top: `calc(100% - ${anchorSize/2}px)` }}></div>
-          <div data-key="rd" className="rd" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: `calc(100% - ${anchorSize / 2}px)` }}></div>
+          <div data-key="ld" onMouseOver={this.mouseOver} className="ld" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: -anchorSize/2 - anchorBorderWidth, top: `calc(100% - ${anchorSize/2}px)`}}></div>
+          <div data-key="d" onMouseOver={this.mouseOver} className="d" style={{ border, position: 'absolute',  backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(50% - ${anchorSize/2}px)`, top: `calc(100% - ${anchorSize/2}px)` }}></div>
+          <div data-key="rd" onMouseOver={this.mouseOver} className="rd" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: `calc(100% - ${anchorSize / 2}px)` }}></div>
           
           { /* 中间部分 */ }
-          <div data-key="l"  className="l" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: -anchorSize / 2 - anchorBorderWidth, top: `calc(50% - ${anchorSize / 2}px)` }}></div>
-          <div data-key="r"  className="r" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: `calc(50% - ${anchorSize / 2}px)` }}></div>
+          <div data-key="l" onMouseOver={this.mouseOver}  className="l" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: -anchorSize / 2 - anchorBorderWidth, top: `calc(50% - ${anchorSize / 2}px)` }}></div>
+          <div data-key="r"  onMouseOver={this.mouseOver} className="r" style={{ border, position: 'absolute', backgroundColor: anchorColor,width: anchorSize, height: anchorSize, left: `calc(100% - ${anchorSize / 2}px)`, top: `calc(50% - ${anchorSize / 2}px)` }}></div>
         </div>
         
       </div>
