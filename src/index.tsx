@@ -276,44 +276,41 @@ export default class Drag extends React.Component<DragProps, any> {
   }
 
   mouseOver = (e: any) => {
-
-    console.log('eeeeee', e);
     const { key } = e.target.dataset;
 
     const element = e.target;
 
-    switch (key) {
-      case "l":
-        element.style.cursor = 'ew-resize';
-        break;
-      case "r":
-        element.style.cursor = 'ew-resize';
-        break;
-      case "u":
-        element.style.cursor = 'ns-resize';
-        break;
-      case "d":
-        element.style.cursor = 'ns-resize';
-        break;
-      case "lu":
-        element.style.cursor = 'nwse-resize';
-        break;
-      case "ru":
-        element.style.cursor = 'nesw-resize';
-        break;
-      case "ld":
-        element.style.cursor = 'nesw-resize';
-        break;
-      case "rd":
-        element.style.cursor = 'nwse-resize';
-        break;
+    if (!anchors.includes(key)) {
+      element.style.cursor = 'move';
+    } else {
+      switch (key) {
+        case "l":
+          element.style.cursor = 'ew-resize';
+          break;
+        case "r":
+          element.style.cursor = 'ew-resize';
+          break;
+        case "u":
+          element.style.cursor = 'ns-resize';
+          break;
+        case "d":
+          element.style.cursor = 'ns-resize';
+          break;
+        case "lu":
+          element.style.cursor = 'nwse-resize';
+          break;
+        case "ru":
+          element.style.cursor = 'nesw-resize';
+          break;
+        case "ld":
+          element.style.cursor = 'nesw-resize';
+          break;
+        case "rd":
+          element.style.cursor = 'nwse-resize';
+          break;
+      }
     }
   } 
-
-  mouseDragOver = (e: any) => {
-    const element = e.target;
-    element.style.cursor = 'move';
-  }
 
   render(): React.ReactNode {
 
@@ -333,8 +330,12 @@ export default class Drag extends React.Component<DragProps, any> {
     mergeStyle.position = 'absolute';
 
     return (
-      <div style={mergeStyle} onMouseOver={this.mouseDragOver}>
-        <div className="simple-rc-drag-container" ref={
+      <div style={mergeStyle} onMouseOver={this.mouseOver}>
+        <div style={{
+          position: 'relative',
+          width: '100%',
+          height: '100%'
+        }} ref={
           (r) => {
             this.element = r;
             if (this.element) {
